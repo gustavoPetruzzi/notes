@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import './App.scss';
+import { Card } from './components/Card/Card';
+import { Login } from './containers/Login/Login';
+import { LoginResponse } from './models/login-response';
+
 
 function App() {
+  const [token, setToken] = useState('');
+  const [userId, setUserId] = useState('');
+  const storeUserInfo = (loginResponse: LoginResponse) => {
+    const {token, userId} = loginResponse;
+    setToken(token);
+    setUserId(userId);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      {/* <Card>
+        holaa
+      </Card> */}
+      <Login onSave={storeUserInfo}/>
     </div>
-  );
+  )
 }
-
 export default App;
