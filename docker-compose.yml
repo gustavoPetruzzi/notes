@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  notes:
+    build:
+      context: ./
+    ports:
+      - "3000:3000"
+    container_name: notes
+    stdin_open: true
+    volumes:
+       - ./my-app:/usr/src/app/notes
+       - /usr/src/app/notes/node_modules
