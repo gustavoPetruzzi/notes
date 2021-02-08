@@ -15,10 +15,9 @@ function App() {
   }
   return (
     <div className="app">
-      {/* <Card>
-        holaa
-      </Card> */}
-      <Login onSave={storeUserInfo}/>
+      <Card width={300} height={600}>
+        <Login onSave={storeUserInfo}/>
+      </Card>
     </div>
   )
 }

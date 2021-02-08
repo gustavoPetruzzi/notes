@@ -15,7 +15,7 @@ export const Login = (props: LoginProps) => {
     e.preventDefault();
     try {
       login(email, password);      
-    } catch (error) {
+    } catch (error) { 
       console.log(error);
     }
 
@@ -23,8 +23,8 @@ export const Login = (props: LoginProps) => {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}> 
-      <TextField required id="email-textfield" label="Email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-      <TextField required id="password-textfield" label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
+      <TextField required variant="outlined" id="email-textfield" label="Email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
+      <TextField required variant="outlined" id="password-textfield" label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
       <button type="submit">Login</button>
     </form>
   )

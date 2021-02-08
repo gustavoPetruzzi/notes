@@ -1,9 +1,15 @@
 import { memo } from 'react';
 import './Card.scss';
 
-function CardComponent(props: any) {
+interface cardProps {
+  width?: number;
+  height?: number;
+  children: any;
+}
+function CardComponent(props: cardProps) {
+  const { width, height } = props;
   return (
-    <div className="card">
+    <div className="card" style={{width, height}}>
       {props.children}
     </div>
   )
