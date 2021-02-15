@@ -1,11 +1,14 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, Spin } from 'antd';
 import { SyntheticEvent, useState } from 'react';
 import { LoginResponse } from '../../models/login-response';
-import { login } from '../../utils/auth';
+import { User } from '../../models/user';
 import styles from './Login.module.scss';
+
 interface LoginProps {
-  onSave(loginResponse: LoginResponse): void
+  isLoading: boolean
+  onSave(email:string, password:string): void
 }
+
 
 const layout = {
   labelCol: { span: 8 },
@@ -17,19 +20,16 @@ const tailLayout = {
 };
 
 export const Login = (props: LoginProps) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [form] = Form.useForm();
+  console.log(props.isLoading);
 
-
-  const handleSubmit = async (e: SyntheticEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     try {
-      const loginResponse = await login(email, password);
-      props.onSave(loginResponse);
+      const values =  await form.validateFields();
+      props.onSave(values.email, values.password);
     } catch (error) { 
       console.log(error);
     }
-
   }
 
   return (
@@ -56,14 +56,19 @@ export const Login = (props: LoginProps) => {
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password'}]}
+          rules={[
+            { 
+              required: true, 
+              message: 'Please input your password'
+            }
+          ]}
         >
           <Input.Password />
         </Form.Item>
         <Form.Item 
           // {...tailLayout}
         >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" loading={props.isLoading}>
             Login
           </Button>
         </Form.Item>

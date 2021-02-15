@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.scss';
-import { Login } from './containers/Login/Login';
+import { Login } from './components/Login/Login';
 import { LoginResponse } from './models/login-response';
 import {
   BrowserRouter as Router,
@@ -8,6 +8,7 @@ import {
   Route,
   useHistory
 } from "react-router-dom";
+import { Auth } from './containers/Auth/Auth';
 function App() {
   let history = useHistory();
   const [token, setToken] = useState('');
@@ -20,12 +21,7 @@ function App() {
   }
   return (
     <div className="app">
-      <Switch>
-        <Route exact path="/login">
-          <Login onSave={storeUserInfo}/>
-        </Route>
-        <Router exact path="/signup"
-      </Switch>
+      <Auth />
     </div>
   )
 }
