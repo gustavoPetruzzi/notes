@@ -1,20 +1,31 @@
-import { Input, TextField } from "@material-ui/core";
-import { SyntheticEvent, useState } from "react";
-import { LoginResponse } from "../../models/login-response";
-import { login } from "../../utils/auth";
-import './Login.scss';
+import { Button, Form, Input } from 'antd';
+import { SyntheticEvent, useState } from 'react';
+import { LoginResponse } from '../../models/login-response';
+import { login } from '../../utils/auth';
+import styles from './Login.module.scss';
 interface LoginProps {
   onSave(loginResponse: LoginResponse): void
 }
+
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 }
+}
+
+const tailLayout = {
+  wrapperCol: { offset: 8, span: 16 },
+};
 
 export const Login = (props: LoginProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleSubmit = (e: SyntheticEvent) => {
+
+  const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
-      login(email, password);      
+      const loginResponse = await login(email, password);
+      props.onSave(loginResponse);
     } catch (error) { 
       console.log(error);
     }
@@ -22,19 +33,41 @@ export const Login = (props: LoginProps) => {
   }
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}> 
-      <TextField required variant="outlined" id="email-textfield" label="Email" type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-      <TextField required variant="outlined" id="password-textfield" label="Password" type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-      <button type="submit">Login</button>
-    </form>
+    <div className={styles.container}>
+      <Form
+        {...layout}
+        name="login"
+        initialValues={{ remember: true }}
+        onFinish={handleSubmit}
+        onFinishFailed={(error) => console.log(error)}
+      >
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your email'
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[{ required: true, message: 'Please input your password'}]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item 
+          // {...tailLayout}
+        >
+          <Button type="primary" htmlType="submit">
+            Login
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   )
 }
-
-{/* <label>
-Email:
-<input type="text" value={email} onChange={(event) => setEmail(event.target.value)}/>
-</label>
-<label>
-Password:
-<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-</label> */}
