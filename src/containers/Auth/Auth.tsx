@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import { Login } from "../../components/Login/Login";
 import { Signup } from "../../components/Signup/Signup";
 import { User } from "../../models/user";
@@ -7,7 +8,8 @@ import { login, signup } from "../../utils/auth";
 
 export const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
-
+  const { type } = useParams<{ type: string }>();
+  
   const onSignup = async (user: User) => {
     const { nickname, email, password } = user;
     setIsLoading(true);

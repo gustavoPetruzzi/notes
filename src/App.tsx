@@ -20,9 +20,11 @@ function App() {
     history.push('/my-notes');
   }
   return (
-    <div className="app">
-      <Auth />
-    </div>
+    <Switch>
+      <Route path="/auth/:type">
+        <Auth />
+      </Route>
+    </Switch>
   )
 }
 export default App;
