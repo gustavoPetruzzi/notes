@@ -9,19 +9,24 @@ interface LoginProps {
 
 export const Signup = (props: LoginProps) => {
   const [form] = Form.useForm();
-  console.log()
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 }
   }
 
-  const handleSubmit = async () => {
-    try {
-      const values: User = await form.validateFields();
-      props.onSave(values);
-    } catch(error) {
-      console.log(error);
-    }
+  const handleSubmit = () => {
+    // try {
+    //   const values = await form.validateFields();
+    //   console.log(values);
+    //   props.onSave(values);
+    // } catch(error) {
+    //   console.log(error);
+    // }
+    form.validateFields()
+    .then(values => {
+      console.log(values);
+    })
+    .catch((error) => console.log(error));
   }
 
   return (

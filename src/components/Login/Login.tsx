@@ -23,9 +23,11 @@ export const Login = (props: LoginProps) => {
   const [form] = Form.useForm();
   console.log(props.isLoading);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (values: any) => {
     try {
-      const values =  await form.validateFields();
+      console.log(values);
+      const values2 =  await form.validateFields();
+      console.log(values);
       props.onSave(values.email, values.password);
     } catch (error) { 
       console.log(error);

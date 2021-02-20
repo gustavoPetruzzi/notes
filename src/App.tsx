@@ -6,9 +6,11 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useHistory
+  useHistory,
+  Redirect
 } from "react-router-dom";
 import { Auth } from './containers/Auth/Auth';
+import { Notes } from './containers/Notes/Notes';
 function App() {
   let history = useHistory();
   const [token, setToken] = useState('');
@@ -17,14 +19,34 @@ function App() {
     const {token, userId} = loginResponse;
     setToken(token);
     setUserId(userId);
-    history.push('/my-notes');
+    history.push('/');
   }
   return (
-    <Switch>
-      <Route path="/auth/:type">
-        <Auth />
-      </Route>
-    </Switch>
+    <div className="app">
+      <Router>
+        <Switch>
+          <Route path="/auth/:type">
+            <Auth handleLogin={storeUserInfo} />
+          </Route>
+          <Route
+            path="/"
+            render={ () => 
+              token && userId ? (
+                <Notes token={token} />
+              ) : (
+                <Redirect
+                  to={{
+                    pathname: "/auth/login"
+                  }}
+                />
+              )
+            }
+          />
+
+
+        </Switch>
+      </Router>
+    </div>
   )
 }
 export default App;
