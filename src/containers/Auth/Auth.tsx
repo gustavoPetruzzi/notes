@@ -41,6 +41,7 @@ export const Auth = (props: AuthProps) => {
       console.log(error);
     }
   }
+
   return (
     <div>
       { type === 'login' &&

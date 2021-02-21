@@ -1,87 +1,52 @@
 import { Button, Form, Input } from 'antd';
 import { SyntheticEvent } from 'react';
+import { InputValues } from '../../models/input-values';
 import { User } from '../../models/user';
+import { SimpleForm } from '../SimpleForm/SimpleForm';
 
-interface LoginProps {
+interface Props {
   isLoading: boolean
   onSave(user: User): void
 }
 
-export const Signup = (props: LoginProps) => {
-  const [form] = Form.useForm();
-  const layout = {
-    labelCol: { span: 8 },
-    wrapperCol: { span: 16 }
-  }
-
-  const handleSubmit = () => {
-    // try {
-    //   const values = await form.validateFields();
-    //   console.log(values);
-    //   props.onSave(values);
-    // } catch(error) {
-    //   console.log(error);
-    // }
-    form.validateFields()
-    .then(values => {
-      console.log(values);
-    })
-    .catch((error) => console.log(error));
-  }
-
+export const Signup = (props: Props) => {
+  const {isLoading, onSave } = props;
+  const values: InputValues[] = [
+    {
+      label: 'Nickname',
+      name: 'nickname',
+      rules: [{
+        required: true,
+        message: 'Please input your nickname'
+      }]
+    },
+    {
+      label: 'Email',
+      name: 'email',
+      rules: [{
+        required: true,
+        message: 'Please input your email'
+      }]
+    },
+    {
+      label: 'Password',
+      name: 'password',
+      rules: [{
+        required: true,
+        message: 'Please input your password'
+      }],
+    }
+  ]
   return (
-    <div>
-      <Form
-        {...layout}
-        name="signup"
-        initialValues={{ remember: true }}
-        onFinish={ handleSubmit }
-        onFinishFailed={(error) => console.log(error)}
-      >
-        <Form.Item
-          label="Nickname"
-          name="nickname"
-          rules={[
-            {
-              required: true,
-              message: 'Please input your nickname'
-            }
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Email"
-          name="email"
-          rules={[
-            {
-              required: true,
-              message: 'Please input yout email'
-            }
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          rules = {[
-            {
-              required: true,
-              message: 'Please input your password'
-            }
-          ]}
-        >
-          <Input.Password/>
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={props.isLoading}>
-            Signup
-          </Button>
-        </Form.Item>
-
-      </Form>
-    </div>
+    <SimpleForm
+      name='signup'
+      buttonName='Sign up'
+      values={values}
+      isLoading={isLoading}
+      onSave={({nickname, email, password}) => onSave({nickname, email, password} as User)}
+    >
+      link to login
+    </SimpleForm>
   )
 
 }

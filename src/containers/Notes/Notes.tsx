@@ -4,7 +4,7 @@ import { getNotes } from '../../utils/notes-api';
 
 export const Notes = (props: { token: string }) => {
   const [notes, setNotes] = useState({});
-
+  const [isLoading, setIsloading] = useState(false);
   // Load notes
   useEffect( () => {
     getNotes(props.token)
