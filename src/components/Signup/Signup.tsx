@@ -1,8 +1,7 @@
-import { Button, Form, Input } from 'antd';
-import { SyntheticEvent } from 'react';
 import { InputValues } from '../../models/input-values';
 import { User } from '../../models/user';
 import { SimpleForm } from '../SimpleForm/SimpleForm';
+import { Link } from 'react-router-dom';
 
 interface Props {
   isLoading: boolean
@@ -45,7 +44,9 @@ export const Signup = (props: Props) => {
       isLoading={isLoading}
       onSave={({nickname, email, password}) => onSave({nickname, email, password} as User)}
     >
-      link to login
+      <Link to="/auth/login">
+        Have an account? <strong> Login </strong>
+      </Link>
     </SimpleForm>
   )
 

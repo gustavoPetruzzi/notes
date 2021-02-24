@@ -1,10 +1,7 @@
-import { Button, Form, Input, Spin } from 'antd';
-import { SyntheticEvent, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { InputValues } from '../../models/input-values';
-import { LoginResponse } from '../../models/login-response';
-import { User } from '../../models/user';
 import { SimpleForm } from '../SimpleForm/SimpleForm';
-import styles from './Login.module.scss';
+//import styles from './Login.module.scss';
 
 interface Props {
   isLoading: boolean
@@ -42,7 +39,9 @@ export const Login = (props: Props) => {
       isLoading={isLoading}
       onSave={(values) => onSave(values.email, values.password)}
     >
-      link to sign up
+      <Link to="/auth/signup">
+        Don't have an account? <strong>Signup</strong>
+      </Link>
     </SimpleForm>
   )
 }
