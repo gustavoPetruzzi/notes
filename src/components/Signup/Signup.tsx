@@ -1,4 +1,4 @@
-import { InputValues } from '../../models/input-values';
+import { InputType, InputValues } from '../../models/input-values';
 import { User } from '../../models/user';
 import { SimpleForm } from '../SimpleForm/SimpleForm';
 import { Link } from 'react-router-dom';
@@ -14,6 +14,7 @@ export const Signup = (props: Props) => {
     {
       label: 'Nickname',
       name: 'nickname',
+      type: InputType.Text,
       rules: [{
         required: true,
         message: 'Please input your nickname'
@@ -22,6 +23,7 @@ export const Signup = (props: Props) => {
     {
       label: 'Email',
       name: 'email',
+      type: InputType.Email,
       rules: [{
         required: true,
         message: 'Please input your email'
@@ -30,6 +32,7 @@ export const Signup = (props: Props) => {
     {
       label: 'Password',
       name: 'password',
+      type: InputType.Password,
       rules: [{
         required: true,
         message: 'Please input your password'

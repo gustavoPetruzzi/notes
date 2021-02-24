@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { InputValues } from '../../models/input-values';
+import { InputType, InputValues } from '../../models/input-values';
 import { SimpleForm } from '../SimpleForm/SimpleForm';
 //import styles from './Login.module.scss';
 
@@ -17,6 +17,7 @@ export const Login = (props: Props) => {
     {
       label: 'Email',
       name: 'email',
+      type: InputType.Email,
       rules: [{
         required: true,
         message: 'Please input your email'
@@ -25,6 +26,7 @@ export const Login = (props: Props) => {
     {
       label: 'Password',
       name: 'password',
+      type: InputType.Password,
       rules: [{
         required: true,
         message: 'Please input your password'

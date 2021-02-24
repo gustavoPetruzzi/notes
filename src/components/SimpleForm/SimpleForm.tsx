@@ -1,5 +1,5 @@
 import { Button, Form, Input } from 'antd';
-import { InputValues } from '../../models/input-values';
+import { InputType, InputValues } from '../../models/input-values';
 import styles from './SimpleForm.module.scss';
 
 interface Props {
@@ -44,7 +44,7 @@ export const SimpleForm = (props: Props) => {
               name={item.name}
               rules={item.rules}
             >
-              <Input />
+              <Input type={item.type} />
             </Form.Item>
           )}
           <Button type="primary" htmlType="submit" loading={isLoading}>
