@@ -1,10 +1,14 @@
-import { Button, Form, Input } from 'antd';
-import { InputType, InputValues } from '../../models/input-values';
+// import { Button, Form, Input } from 'antd';
+import { InputValues } from '../../models/input-values';
+import { useForm } from "react-hook-form";
 import styles from './SimpleForm.module.scss';
+import React from 'react';
+import { Button } from '../Button/Button';
+import { ButtonType } from '../Button/button-type';
 
 interface Props {
-  name: string,
   buttonName: String,
+  buttonType: ButtonType,
   values: InputValues[],
   isLoading: boolean,
   children: any,
@@ -12,47 +16,22 @@ interface Props {
   //Add onFinish failed handler
 }
 
-
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 }
-}
-
-// const tailLayout = {
-//   wrapperCol: { offset: 8, span: 16 },
-// };
-
 export const SimpleForm = (props: Props) => {
-  const [form] = Form.useForm();
-  const { name, buttonName, values, isLoading, onSave } = props;
+  const { register, handleSubmit, watch, errors } = useForm();
+  const { buttonName, values, isLoading, onSave, buttonType } = props;
   return (
-    <>
-      <div className={styles.container}>
-        <Form
-          name={name}
-          initialValues={{ remember: true}}
-          onFinish={onSave}
-          onFinishFailed={(error) => console.log(error)}
-          {...layout}
-
-        >
-          {values.map(item => 
-            <Form.Item
-              key={item.name}
-              label={item.label}
-              name={item.name}
-              rules={item.rules}
-            >
-              <Input type={item.type} />
-            </Form.Item>
-          )}
-          <Button type="primary" htmlType="submit" loading={isLoading}>
-            {buttonName}
-          </Button>
-        </Form>
-      </div>
-      {props.children}
-    </>
-  )  
+    <form onSubmit={handleSubmit(onSave)}>
+      {values.map(item =>
+        <input name={item.name} className={styles.input__field} type={item.type} ref={register({...item.rules})} placeholder={item.label}/>
+      )}
+      <Button
+        type={buttonType}
+      >
+        {buttonName}
+      </Button>
+      <>
+        {props.children}
+      </>
+    </form>
+  )
 }

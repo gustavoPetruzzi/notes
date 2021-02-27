@@ -2,12 +2,11 @@ export interface InputValues {
   label: string,
   name: string,
   type: InputType,
-  rules?: InputRule[]
+  rules?: InputRule
 }
 
 interface InputRule {
   required: boolean,
-  message: string,
 }
 
 export enum InputType {

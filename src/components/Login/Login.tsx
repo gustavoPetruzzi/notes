@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { InputType, InputValues } from '../../models/input-values';
+import { ButtonType } from '../Button/button-type';
 import { SimpleForm } from '../SimpleForm/SimpleForm';
-//import styles from './Login.module.scss';
+import styles from './Login.module.scss';
 
 interface Props {
   isLoading: boolean
@@ -18,32 +19,33 @@ export const Login = (props: Props) => {
       label: 'Email',
       name: 'email',
       type: InputType.Email,
-      rules: [{
+      rules: {
         required: true,
-        message: 'Please input your email'
-      }]
+      }
     },
     {
       label: 'Password',
       name: 'password',
       type: InputType.Password,
-      rules: [{
+      rules: {
         required: true,
-        message: 'Please input your password'
-      }]
+      }
     }
   ]
   return (
-    <SimpleForm
-      name='login'
-      buttonName='Login'
-      values={values}
-      isLoading={isLoading}
-      onSave={(values) => onSave(values.email, values.password)}
-    >
+    <div className={styles.container}>
+      <h1>Login</h1>
+      <SimpleForm
+        buttonName='Login'
+        buttonType={ButtonType.DEFAULT}
+        values={values}
+        isLoading={isLoading}
+        onSave={(values) => onSave(values.email, values.password)}
+      >
+      </SimpleForm>
       <Link to="/auth/signup">
-        Don't have an account? <strong>Signup</strong>
+          Don't have an account? <strong>Signup</strong>
       </Link>
-    </SimpleForm>
+    </div>
   )
 }
