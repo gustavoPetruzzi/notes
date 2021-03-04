@@ -13,6 +13,8 @@ import { Auth } from './containers/Auth/Auth';
 import { Notes } from './containers/Notes/Notes';
 function App() {
   let history = useHistory();
+  console.log(history);
+
   const [token, setToken] = useState('');
   const [userId, setUserId] = useState('');
   const storeUserInfo = (loginResponse: LoginResponse) => {
@@ -23,7 +25,6 @@ function App() {
   }
   return (
     <div className="app">
-      <Router>
         <Switch>
           <Route path="/auth/:type">
             <Auth handleLogin={storeUserInfo} />
@@ -42,10 +43,7 @@ function App() {
               )
             }
           />
-
-
         </Switch>
-      </Router>
     </div>
   )
 }

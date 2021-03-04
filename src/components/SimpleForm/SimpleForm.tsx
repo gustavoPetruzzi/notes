@@ -22,7 +22,14 @@ export const SimpleForm = (props: Props) => {
   return (
     <form onSubmit={handleSubmit(onSave)}>
       {values.map(item =>
-        <input name={item.name} className={styles.input__field} type={item.type} ref={register({...item.rules})} placeholder={item.label}/>
+        <input 
+          key={item.name}
+          name={item.name}
+          className={styles.input__field} 
+          type={item.type} 
+          ref={register({...item.rules})} 
+          placeholder={item.label}
+        />
       )}
       <Button
         type={buttonType}
