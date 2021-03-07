@@ -18,7 +18,6 @@ const ButtonComponent = (props: Props) => {
     }
     return buttonsTypes[type];
   }
-  const buttonType = type === ButtonType.PRIMARY ? styles.primary : styles.danger
   return (
     <button className={`${styles.default} ${getButtonType(type)}`} onClick={onClick}>
       {props.children}

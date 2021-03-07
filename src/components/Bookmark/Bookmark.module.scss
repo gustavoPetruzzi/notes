@@ -1,0 +1,32 @@
+*, *:before, *:after{ 
+  box-sizing: border-box; 
+  -moz-box-sizing: border-box; 
+  -webkit-box-sizing: border-box; 
+} 
+.bookmark{ 
+  position: relative; 
+  // height: 70px; 
+  // width: 50px; 
+  padding: 0px; 
+  -webkit-transform: rotate(0deg) skew(0deg); 
+  transform: rotate(0deg) skew(0deg); 
+  // border-left: 25px solid red; 
+  // border-right: 25px solid red; 
+  // border-bottom: 25px solid transparent; 
+
+  &__small {
+    height: 20px;
+    width: 10px;
+    border-left: 5px solid red; 
+    border-right: 6px solid red; 
+    border-bottom: 10px solid transparent; 
+  }
+
+  &__large {
+    height: 70px; 
+    width: 50px; 
+    border-left: 25px solid red; 
+    border-right: 25px solid red; 
+    border-bottom: 25px solid transparent; 
+  }
+}

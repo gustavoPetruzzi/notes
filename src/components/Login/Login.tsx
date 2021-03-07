@@ -3,7 +3,8 @@ import { InputType, InputValues } from '../../models/input-values';
 import { ButtonType } from '../Button/button-type';
 import { SimpleForm } from '../SimpleForm/SimpleForm';
 import styles from './Login.module.scss';
-
+import { Bookmark } from '../Bookmark/Bookmark';
+import { BookmarkSize } from '../Bookmark/bookmark-size';
 interface Props {
   isLoading: boolean
   onSave(email:string, password:string): void
@@ -34,6 +35,7 @@ export const Login = (props: Props) => {
   ]
   return (
     <div className={styles.container}>
+      <Bookmark size={BookmarkSize.SMALL} />
       <h1>Login</h1>
       <SimpleForm
         buttonName='Login'
