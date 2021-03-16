@@ -4,6 +4,8 @@ import { SimpleForm } from '../SimpleForm/SimpleForm';
 import { Link } from 'react-router-dom';
 import { ButtonType } from '../Button/button-type';
 import styles from './Signup.module.scss';
+import { Bookmark } from '../Bookmark/Bookmark';
+import { BookmarkSize } from '../Bookmark/bookmark-size';
 interface Props {
   isLoading: boolean
   onSave(user: User): void
@@ -39,6 +41,7 @@ export const Signup = (props: Props) => {
   ]
   return (
     <div className={styles.container}>
+      <Bookmark size={BookmarkSize.LARGE} />
       <h1> Signup </h1>
       <SimpleForm
         buttonName='Sign up'

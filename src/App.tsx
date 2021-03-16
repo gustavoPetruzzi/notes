@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import './App.scss';
-import { Login } from './components/Login/Login';
 import { LoginResponse } from './models/login-response';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   useHistory,
@@ -11,6 +9,7 @@ import {
 } from "react-router-dom";
 import { Auth } from './containers/Auth/Auth';
 import { Notes } from './containers/Notes/Notes';
+import { Navbar } from './components/Navbar/Navbar';
 function App() {
   let history = useHistory();
   console.log(history);
@@ -25,6 +24,7 @@ function App() {
   }
   return (
     <div className="app">
+        <Navbar></Navbar>
         <Switch>
           <Route path="/auth/:type">
             <Auth handleLogin={storeUserInfo} />

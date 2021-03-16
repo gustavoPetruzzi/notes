@@ -5,7 +5,7 @@ import { Signup } from "../../components/Signup/Signup";
 import { LoginResponse } from "../../models/login-response";
 import { User } from "../../models/user";
 import { login, signup } from "../../utils/auth";
-
+import styles from './Auth.module.scss';
 interface AuthProps {
   handleLogin(response: LoginResponse): any;
 }
@@ -44,7 +44,7 @@ export const Auth = (props: AuthProps) => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       { type === 'login' &&
         <Login isLoading={ isLoading } onSave={ onLogin }/>
       }

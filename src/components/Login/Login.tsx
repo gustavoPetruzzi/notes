@@ -35,7 +35,7 @@ export const Login = (props: Props) => {
   ]
   return (
     <div className={styles.container}>
-      <Bookmark size={BookmarkSize.SMALL} />
+      <Bookmark size={BookmarkSize.LARGE}/>
       <h1>Login</h1>
       <SimpleForm
         buttonName='Login'
