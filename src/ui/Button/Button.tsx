@@ -4,7 +4,7 @@ import styles from './Button.module.scss';
 interface Props {
   type: ButtonType
   onClick? () : void
-  children: any
+  children: React.ReactNode
 }
 
 

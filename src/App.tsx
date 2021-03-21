@@ -12,7 +12,6 @@ import { Notes } from './containers/Notes/Notes';
 import { Navbar } from './components/Navbar/Navbar';
 function App() {
   let history = useHistory();
-  console.log(history);
 
   const [token, setToken] = useState('');
   const [userId, setUserId] = useState('');
@@ -24,8 +23,8 @@ function App() {
   }
   return (
     <div className="app">
-        <Navbar></Navbar>
-        <Switch>
+      <Navbar></Navbar>
+      <Switch>
           <Route path="/auth/:type">
             <Auth handleLogin={storeUserInfo} />
           </Route>
