@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { Note } from '../models/notes';
-const baseUrl: string = 'http://localhost:8080';
+const baseUrl: string = 'http://localhost:8080/notes';
 
 export async function getNotes(token: string): Promise<Note[]> {
   const config = {
     headers: {
-      Autorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     }
   }
   
