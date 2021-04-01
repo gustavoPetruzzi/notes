@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { InputType, InputValues } from '../../models/input-values';
-import { ButtonType } from '../Button/button-type';
+import { ButtonType } from '../../ui/Button/button-type';
 import { SimpleForm } from '../SimpleForm/SimpleForm';
 import styles from './Login.module.scss';
 import { Bookmark } from '../Bookmark/Bookmark';
@@ -35,7 +35,9 @@ export const Login = (props: Props) => {
   ]
   return (
     <div className={styles.container}>
-      <Bookmark size={BookmarkSize.LARGE}/>
+      <div className={styles.bookmark}>
+        <Bookmark size={BookmarkSize.LARGE} />
+      </div>
       <h1>Login</h1>
       <SimpleForm
         buttonName='Login'
