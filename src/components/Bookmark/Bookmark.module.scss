@@ -10,26 +10,22 @@
   -moz-box-sizing: border-box; 
   -webkit-box-sizing: border-box; 
 } 
-.container {
-  display: flex;
-  justify-content: start;
 
-  .bookmark{ 
-    position: relative; 
-    -webkit-transform: rotate(0deg) skew(0deg); 
-    transform: rotate(0deg) skew(0deg); 
+.bookmark { 
+  position: relative; 
+  -webkit-transform: rotate(0deg) skew(0deg); 
+  transform: rotate(0deg) skew(0deg); 
 
 
-    &__small {
-      height: 20px;
-      width: 10px;
-      @include bookmarkBorder(5px, 6px, 10px, red );
-    }
+  &__small {
+    height: 20px;
+    width: 10px;
+    @include bookmarkBorder(5px, 6px, 10px, red );
+  }
 
-    &__large {
-      height: 70px; 
-      width: 50px; 
-      @include bookmarkBorder(25px, 25px, 25px, red); 
-    }
+  &__large {
+    height: 70px; 
+    width: 50px; 
+    @include bookmarkBorder(25px, 25px, 25px, red); 
   }
 }

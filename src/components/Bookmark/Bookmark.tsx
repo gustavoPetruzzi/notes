@@ -3,8 +3,7 @@ import { BookmarkSize } from './bookmark-size';
 import styles from './Bookmark.module.scss';
 
 interface Props {
-  size: BookmarkSize;
-  children?: React.ReactNode
+  size: BookmarkSize,
 }
 const getBookmarkClassNameSize = (size: BookmarkSize) => {
   const className = {
@@ -12,17 +11,14 @@ const getBookmarkClassNameSize = (size: BookmarkSize) => {
     [BookmarkSize.MEDIUM] : styles.bookmark__medium,
     [BookmarkSize.LARGE] : styles.bookmark__large
   }
-
   return className[size];
 }
+
 const BookmarkComponent = (props: Props) => {
-  const {children, size} = props;
-  const bookmarkClassname = getBookmarkClassNameSize(size);
+  const bookmarkSizeClassname = getBookmarkClassNameSize(props.size);
+
   return (
-    <div className={styles.container}>
-      <div className={`${styles.bookmark} ${bookmarkClassname}`}></div>
-        { children }
-    </div>
+    <div className={`${styles.bookmark} ${bookmarkSizeClassname}`}></div>
   )
 }
 
