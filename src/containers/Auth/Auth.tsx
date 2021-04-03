@@ -1,6 +1,7 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { Login } from "../../components/Login/Login";
+import { NoteImage } from "../../components/NoteImage/NoteImage";
 import { Signup } from "../../components/Signup/Signup";
 import { LoginResponse } from "../../models/login-response";
 import { User } from "../../models/user";
@@ -45,6 +46,9 @@ export const Auth = (props: AuthProps) => {
 
   return (
     <div className={styles.container}>
+      <div>
+        <NoteImage></NoteImage>
+      </div>
       { type === 'login' &&
         <Login isLoading={ isLoading } onSave={ onLogin }/>
       }
