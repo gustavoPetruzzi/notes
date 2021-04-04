@@ -5,6 +5,7 @@ import { Modal } from '../../components/Modal/Modal';
 import { Note } from '../../models/notes';
 import { getNotes } from '../../utils/notes-api';
 import styles from './Notes.module.scss'
+import { NoteForm } from '../../components/NotesForm/NotesForm';
 export const Notes = (props: { token: string }) => {
   const [notes, setNotes] = useState([{}]);
   const [isLoading, setIsloading] = useState(false);
@@ -36,7 +37,7 @@ export const Notes = (props: { token: string }) => {
       {!isLoading  && notes.length > 0 ? <h1>NOTES</h1> : <h2> It seems that you don't have any notes :/</h2>}
       <Button type={ButtonType.DEFAULT} onClick={newNoteModal} >Add note</Button>
       <Modal closeModal={closeModal} show={showModal}>
-        
+        <NoteForm onSave={() => console.log('print')}/>
       </Modal>
     </div>
   )
