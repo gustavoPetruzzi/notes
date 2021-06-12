@@ -3,8 +3,7 @@ import { InputValues } from '../../models/input-values';
 import { useForm } from "react-hook-form";
 import styles from './SimpleForm.module.scss';
 import React from 'react';
-import { Button } from '../../ui/Button/Button';
-import { ButtonType } from '../../ui/Button/button-type';
+import { ButtonType } from '../../models/button-type';
 
 interface Props {
   buttonName: String,
@@ -19,6 +18,8 @@ interface Props {
 export const SimpleForm = (props: Props) => {
   const { register, handleSubmit, watch, errors } = useForm();
   const { buttonName, values, isLoading, onSave, buttonType } = props;
+  const buttonColor = getColor(buttonType);
+  const loadingIcon = isLoading ? 'is-loading' : '';
   return (
     <form onSubmit={handleSubmit(onSave)}>
       {values.map(item =>
@@ -31,14 +32,26 @@ export const SimpleForm = (props: Props) => {
           placeholder={item.label}
         />
       )}
-      <Button
-        type={buttonType}
-      >
-        {buttonName}
-      </Button>
+      <button className={`button ${buttonColor} ${loadingIcon}`}>
+        { buttonName }
+      </button>
       <>
         {props.children}
       </>
     </form>
   )
+}
+
+const getColor = (buttonType: ButtonType) => {
+  const colors = {
+    [ButtonType.Primary] : 'is-primary',
+    [ButtonType.Link] : 'is-link',
+    [ButtonType.Info] : 'is-info',
+    [ButtonType.Success] : 'is-success',
+    [ButtonType.Warning] : 'is-warning',
+    [ButtonType.Danger] : 'is-danger',
+    [ButtonType.Default] : 'is-white',
+  };
+
+  return colors[buttonType] || colors[ButtonType.Default];
 }

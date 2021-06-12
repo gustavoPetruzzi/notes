@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '../../ui/Button/Button';
-import { ButtonType } from '../../ui/Button/button-type';
 import { Modal } from '../../components/Modal/Modal';
 import { Note } from '../../models/notes';
 import { getNotes } from '../../utils/notes-api';
@@ -38,7 +36,7 @@ export const Notes = (props: { token: string }) => {
     <div className={styles.container}>
       {isLoading ? <h1>Loading...</h1> : null}
       {!isLoading  && notes.length > 0 ? <h1>NOTES</h1> : <h2> It seems that you don't have any notes :/</h2>}
-      <Button type={ButtonType.DEFAULT} onClick={newNoteModal} >Add note</Button>
+      <button className="button is-primary">Add note</button>
       <Modal show={showModal}>
         <NoteForm onSave={() => console.log('print')}/>
       </Modal>

@@ -46,9 +46,7 @@ export const Auth = (props: AuthProps) => {
 
   return (
     <div className={styles.container}>
-      <div>
-        <NoteImage></NoteImage>
-      </div>
+      <NoteImage></NoteImage>
       { type === 'login' &&
         <Login isLoading={ isLoading } onSave={ onLogin }/>
       }
