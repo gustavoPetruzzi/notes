@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 import { InputType, InputValues } from '../../models/input-values';
-import { ButtonType } from '../../ui/Button/button-type';
 import { SimpleForm } from '../SimpleForm/SimpleForm';
 import styles from './Login.module.scss';
 import { Bookmark } from '../Bookmark/Bookmark';
 import { BookmarkSize } from '../Bookmark/bookmark-size';
+import { ButtonType } from '../../models/button-type';
 interface Props {
   isLoading: boolean
   onSave(email:string, password:string): void
@@ -41,7 +41,7 @@ export const Login = (props: Props) => {
       <h1>Login</h1>
       <SimpleForm
         buttonName='Login'
-        buttonType={ButtonType.DEFAULT}
+        buttonType={ButtonType.Default}
         values={values}
         isLoading={isLoading}
         onSave={(values) => onSave(values.email, values.password)}

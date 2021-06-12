@@ -1,11 +1,12 @@
 import { memo } from 'react';
+import takingNotes from '../../assets/taking_notes.svg';
 import styles from './NoteImage.module.scss';
 
-const NoteImageComponent = (props: any) => {
+const NoteImageComponent = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.pencil}></div>
+      <img alt="taking notes" src={takingNotes}></img>
     </div>
   )
 }

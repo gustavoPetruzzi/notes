@@ -23,7 +23,9 @@ function App() {
   }
   return (
     <div className="app">
-      <Navbar></Navbar>
+      {
+        token.length > 0 && <Navbar></Navbar>
+      }
       <Switch>
           <Route path="/auth/:type">
             <Auth handleLogin={storeUserInfo} />
