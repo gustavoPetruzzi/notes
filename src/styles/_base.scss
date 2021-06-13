@@ -5,25 +5,3 @@
   align-items: $alignItems;
 }
 
-.input {
-  &__field {
-    display: block;
-    margin-bottom: 1rem;
-    padding: 0.5rem 1rem;
-    width: 100%;
-    border: none;
-    border-radius: 0.4rem;
-
-    &::placeholder {
-      color: cadetblue;
-      font-weight: bold;
-    }
-
-
-    &:focus {
-      outline: none;
-      box-shadow: 0.2rem 0.8rem 1.6rem black;
-    }
-    
-  }
-}
