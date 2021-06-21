@@ -1,11 +1,12 @@
-FROM node:12
+FROM node:alpine
 
-WORKDIR /usr/src/app/notes
+ENV CI=true
+WORKDIR /app
 
-COPY package*.json ./
+COPY package.json ./
 
 RUN npm install
-
+COPY ./ ./
 EXPOSE 3000
 
 CMD ["npm", "start"]
