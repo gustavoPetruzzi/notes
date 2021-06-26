@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import { Login } from "../../components/Login/Login";
 import { NoteImage } from "../../components/NoteImage/NoteImage";
 import { Signup } from "../../components/Signup/Signup";
+import { LoginFormData } from "../../models/login-form-data";
 import { LoginResponse } from "../../models/login-response";
 import { User } from "../../models/user";
 import { login, signup } from "../../utils/auth";
@@ -30,10 +31,10 @@ export const Auth = (props: AuthProps) => {
     }
   }
 
-  const onLogin = async (email: string, password: string) => {
+  const onLogin = async (formData: LoginFormData) => {
     setIsLoading(true);
     try {
-      const { token, userId } = await login(email, password);
+      const { token, userId } = await login(formData.email, formData.password);
       console.log(`token: ${token} userId: ${userId}`);
       setIsLoading(false);
       props.handleLogin({token, userId});

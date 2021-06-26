@@ -1,52 +1,68 @@
 import { Link } from 'react-router-dom';
-import { InputType, InputValues } from '../../models/input-values';
-import { SimpleForm } from '../SimpleForm/SimpleForm';
 import styles from './Login.module.scss';
+import { useForm } from "react-hook-form";
 import { Bookmark } from '../Bookmark/Bookmark';
 import { BookmarkSize } from '../Bookmark/bookmark-size';
 import { ButtonType } from '../../models/button-type';
+import { getColor } from '../../utils/utils';
+import { LoginFormData } from '../../models/login-form-data';
 interface Props {
   isLoading: boolean
-  onSave(email:string, password:string): void
+  onSave(formData: LoginFormData): void
 }
-
-
 
 export const Login = (props: Props) => {
   const { isLoading, onSave } = props;
-
-  const values: InputValues[] = [
-    {
-      label: 'Email',
-      name: 'email',
-      type: InputType.Email,
-      rules: {
-        required: true,
-      }
-    },
-    {
-      label: 'Password',
-      name: 'password',
-      type: InputType.Password,
-      rules: {
-        required: true,
-      }
-    }
-  ]
+  const { register, handleSubmit, formState: { errors }} = useForm<LoginFormData>({ mode: "onChange"});
+  const buttonType = getColor(ButtonType.Default);
+  const loadingIcon = isLoading ? 'is-loading' : '';
+  const onSubmit = (data: LoginFormData) => onSave(data);
   return (
     <div className={styles.container}>
       <div className={styles.bookmark}>
         <Bookmark size={BookmarkSize.LARGE} />
       </div>
       <h1>Login</h1>
-      <SimpleForm
-        buttonName='Login'
-        buttonType={ButtonType.Default}
-        values={values}
-        isLoading={isLoading}
-        onSave={(values) => onSave(values.email, values.password)}
-      >
-      </SimpleForm>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="field">
+          <label className="label"> Email </label>
+          <input 
+            name="email"
+            className="input"
+            placeholder="Email"
+            ref={register({
+              required: true,
+              pattern: /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/
+            })}
+          />
+          { 
+            errors?.email?.type === "required" && 
+            <p className="help is-danger">This is required</p>
+          }
+          {
+            errors?.email?.type === "pattern" &&
+            <p className="help is-danger">Invalid email</p>
+          }
+        </div>
+        <div className="field">
+          <label className="label"> Password</label>
+          <input
+            name="password"
+            className="input"
+            type="password"
+            placeholder="Password"
+            ref={register({
+              required: true
+            })}
+          />
+          { errors?.password?.type === "required" &&
+            <p className="help is-danger"> This is required</p>
+          }
+        </div>
+        <button type="submit" className={`button ${buttonType} ${loadingIcon}`}>
+          Login
+        </button>
+      </form>
       <Link to="/auth/signup">
           Don't have an account? <strong>Signup</strong>
       </Link>
