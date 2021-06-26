@@ -6,7 +6,19 @@ export interface InputValues {
 }
 
 interface InputRule {
-  required: boolean,
+  required?: string,
+  maxLength?: {
+    value: number,
+    message: string,
+  },
+  minLength?: {
+    value: number,
+    message: string,
+  },
+  pattern?: {
+    value: RegExp,
+    message: string
+  }
 }
 
 export enum InputType {
