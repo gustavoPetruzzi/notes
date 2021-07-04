@@ -36,8 +36,8 @@ export const Notes = (props: { token: string }) => {
     <div className={styles.container}>
       {isLoading ? <h1>Loading...</h1> : null}
       {!isLoading  && notes.length > 0 ? <h1>NOTES</h1> : <h2> It seems that you don't have any notes :/</h2>}
-      <button className="button is-primary">Add note</button>
-      <Modal show={showModal}>
+      <button className="button is-primary" onClick={newNoteModal}>Add note</button>
+      <Modal show={showModal} title="New note" onClose={closeModal}>
         <NoteForm onSave={() => console.log('print')}/>
       </Modal>
     </div>
