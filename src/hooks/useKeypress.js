@@ -14,7 +14,7 @@ import { useEffect } from 'react';
     }
     window.addEventListener('keyup', onKeyUp);
     return () => window.removeEventListener('keyup', onKeyUp);
-  }, []);
+  }, [action, key]);
 
 
 }
