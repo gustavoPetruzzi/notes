@@ -5,3 +5,7 @@ export interface Note {
   receiver: number,
   sender: number,
 }
+
+export interface FullNote extends Note {
+  id: number,
+}

@@ -1,14 +1,14 @@
 import axios from 'axios';
-import { Note } from '../models/notes';
+import { FullNote } from '../models/notes';
 const baseUrl: string = 'http://localhost:8080/notes';
 
-export async function getNotes(token: string): Promise<Note[]> {
+export async function getNotes(token: string): Promise<FullNote[]> {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`
     }
   }
   
-  const { data } = await axios.get<Note[]>(baseUrl, config);
+  const { data } = await axios.get<FullNote[]>(baseUrl, config);
   return data;
 }

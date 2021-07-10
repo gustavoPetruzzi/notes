@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from '../../components/Modal/Modal';
-import { Note } from '../../models/notes';
+import { FullNote } from '../../models/notes';
 import { getNotes } from '../../utils/notes-api';
 import styles from './Notes.module.scss'
 import { NoteForm } from '../../components/NotesForm/NotesForm';
@@ -14,7 +14,7 @@ export const Notes = (props: { token: string }) => {
     setIsloading(true);
     
     getNotes(props.token)
-      .then((notes: Note[]) =>{
+      .then((notes: FullNote[]) =>{
         setNotes(notes);
       })
       .catch((error) => console.log(error))
