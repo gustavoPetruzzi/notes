@@ -1,12 +1,13 @@
-FROM node:alpine
-
-ENV CI=true
-WORKDIR /app
-
-COPY package.json ./
-
+FROM node:14.9
+ 
+WORKDIR /usr/src/app
+ 
+COPY package*.json ./
+ 
 RUN npm install
-COPY ./ ./
+ 
+COPY . .
+ 
 EXPOSE 3000
-
-CMD ["npm", "start"]
+ 
+CMD [ "npm", "start" ]
