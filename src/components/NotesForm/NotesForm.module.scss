@@ -2,4 +2,21 @@
 
 .container {
   padding: 1rem;
+
+  select {
+    display: block;
+    width: 40%;
+  }
+  input {
+    margin-bottom: 1rem;
+  }
+  textarea {
+    margin-bottom: 1rem;
+  }
+  label {
+    text-align: left;
+  }
+  button {
+    margin-top: 1rem;
+  }
 }
