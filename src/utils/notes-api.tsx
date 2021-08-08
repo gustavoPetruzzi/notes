@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FullNote } from '../models/notes';
+import { FullNote } from '../models/note';
 const baseUrl: string = 'http://localhost:8080/notes';
 
 export async function getNotes(token: string): Promise<FullNote[]> {

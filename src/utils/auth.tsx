@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { LoginResponse } from '../models/login-response';
+import { FullUser } from '../models/user';
 const baseUrl: string = 'http://localhost:8080';
 
 
@@ -17,3 +18,4 @@ export async function signup(email: string, password: string, nickname: string) 
   const { data } = await axios.post<{ message:string }>(`${baseUrl}/auth/signup`, signupData);
   return data;
 }
+
