@@ -17,7 +17,6 @@ export const NoteForm = (props: Props) => {
   const buttonType = getColor(ButtonType.Default);
   const loadingIcon = isLoading ? 'is-loading' : '';
   const onSubmit = (data: NoteFormData) => onSave(data);
-  // const selectClassName = `${style. }`
   return (
     <div className={styles.container}>
       <h1> Add Note </h1>
@@ -64,7 +63,7 @@ export const NoteForm = (props: Props) => {
             })
           }
         </select>
-        <button className="button is-primary" type="submit">Save</button>
+        <button className={`button ${buttonType} ${loadingIcon}}`} type="submit">Save</button>
       </form>
     </div>
   )
