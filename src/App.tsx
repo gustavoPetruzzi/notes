@@ -15,6 +15,10 @@ function App() {
 
   const [token, setToken] = useState('');
   const [userId, setUserId] = useState('');
+  console.log('holaaa');
+  console.log('vas a funcionar?');
+  console.log('y ahora?');
+
   const storeUserInfo = (loginResponse: LoginResponse) => {
     const {token, userId} = loginResponse;
     setToken(token);
