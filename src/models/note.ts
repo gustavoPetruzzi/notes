@@ -1,5 +1,5 @@
 export interface Note extends NoteFormData {
-  sender: number,
+  senderId: number,
 }
 
 export interface FullNote extends Note {
@@ -9,5 +9,5 @@ export interface FullNote extends Note {
 export interface NoteFormData {
   title: string,
   content: string,
-  receiver: number
+  receiverId: number
 }
