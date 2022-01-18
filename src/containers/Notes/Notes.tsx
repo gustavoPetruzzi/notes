@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "../../components/Modal/Modal";
-import { getNotes } from "../../utils/notes-api";
+import { getNotes, saveNote } from "../../utils/notes-api";
 import styles from "./Notes.module.scss";
 import { NoteForm } from "../../components/NotesForm/NotesForm";
 import useKeypress from "../../hooks/useKeypress";
 import { getUsers } from "../../utils/user";
-import { Note } from "../../models/note";
+import { NoteFormData, FullNote, Note } from "../../models/note";
 import { ListedUser } from "../../models/user";
-export const Notes = (props: { token: string }) => {
-  const [notes, setNotes] = useState<Note[]>([]);
+export const Notes = (props: { token: string; userId: string }) => {
+  const [notes, setNotes] = useState<FullNote[]>([]);
   const [users, setUsers] = useState<ListedUser[]>([]);
   const [isLoading, setIsloading] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -20,7 +20,6 @@ export const Notes = (props: { token: string }) => {
         const notesListed = await getNotes(props.token);
         const usersListed = await getUsers(props.token);
         setNotes(notesListed);
-        console.log(usersListed);
         setUsers(usersListed);
       } catch {
         console.log("something");
@@ -40,6 +39,16 @@ export const Notes = (props: { token: string }) => {
     setShowModal(false);
   };
 
+  const onSaveHandler = async (data: NoteFormData) => {
+    const newNote: Note = { ...data, senderId: +props.userId };
+    const response = await saveNote(props.token, newNote);
+    setNotes((prevNotes) => {
+      const updatedNotes: FullNote[] = [...prevNotes];
+      updatedNotes.push({ ...newNote, id: response.noteId });
+      return updatedNotes;
+    });
+  };
+
   return (
     <div className={styles.container}>
       {isLoading ? <h1>Loading...</h1> : null}
@@ -52,11 +61,7 @@ export const Notes = (props: { token: string }) => {
         Add note
       </button>
       <Modal show={showModal} title="New note" onClose={closeModal}>
-        <NoteForm
-          onSave={() => console.log("print")}
-          isLoading={isLoading}
-          users={users}
-        />
+        <NoteForm onSave={onSaveHandler} isLoading={isLoading} users={users} />
       </Modal>
     </div>
   );
