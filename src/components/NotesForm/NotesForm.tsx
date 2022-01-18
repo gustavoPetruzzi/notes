@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { ButtonType } from "../../models/button-type";
-import { Note, NoteFormData } from "../../models/note";
+import { NoteFormData } from "../../models/note";
 import { ListedUser } from "../../models/user";
 import { getColor } from "../../utils/utils";
 import styles from "./NotesForm.module.scss";
@@ -20,7 +20,10 @@ export const NoteForm = (props: Props) => {
   const { onSave, isLoading, users } = props;
   const buttonType = getColor(ButtonType.Default);
   const loadingIcon = isLoading ? "is-loading" : "";
-  const onSubmit = (data: NoteFormData) => onSave(data);
+  const onSubmit = (data: NoteFormData) => {
+    const formattedData = { ...data, receiverId: +data.receiverId };
+    onSave(formattedData);
+  };
   return (
     <div className={styles.container}>
       <h1> Add Note </h1>
@@ -51,6 +54,9 @@ export const NoteForm = (props: Props) => {
           rows={4}
           cols={4}
           placeholder="Content"
+          ref={register({
+            required: true,
+          })}
         />
         {errors?.content && (
           <p className="help is-danger"> The content is required</p>
@@ -60,7 +66,7 @@ export const NoteForm = (props: Props) => {
         </label>
         <select
           className="select"
-          name="receiver"
+          name="receiverId"
           placeholder="Select a receiver"
           ref={register({
             required: true,
