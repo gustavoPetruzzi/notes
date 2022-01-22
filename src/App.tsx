@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.scss";
 import { LoginResponse } from "./models/login-response";
 import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import { Auth } from "./containers/Auth/Auth";
 import { Notes } from "./containers/Notes/Notes";
 import { Navbar } from "./components/Navbar/Navbar";
+import Input from "./ui/Input/Input";
 function App() {
   let history = useHistory();
 
@@ -17,6 +18,20 @@ function App() {
     setUserId(userId);
     history.push("/");
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+    console.log("holaaaaa");
+    console.log(token);
+    console.log(userId);
+    console.log("hola?");
+    if (token && userId) {
+      setToken(token);
+      setUserId(userId);
+    }
+  }, [token, userId]);
+
   return (
     <div className="app">
       {token.length > 0 && <Navbar></Navbar>}
