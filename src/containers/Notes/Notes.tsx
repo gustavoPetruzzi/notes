@@ -12,6 +12,7 @@ export const Notes = (props: { token: string; userId: string }) => {
   const [users, setUsers] = useState<ListedUser[]>([]);
   const [isLoading, setIsloading] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
   // Load notes
   useEffect(() => {
     (async () => {
