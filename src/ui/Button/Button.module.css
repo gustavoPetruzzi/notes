@@ -1,0 +1,28 @@
+.button {
+  font-size: 1em;
+  font-weight: 600;
+  position: relative;
+  outline: none;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 35px;
+  width: 100px; 
+}
+
+.primary {
+  background-color: cadetblue;
+  color: white;
+}
+
+.default {
+  background-color: white;
+  color: black;
+}
+
+.danger {
+  background-color: #dc3545;
+  color: white;
+}
