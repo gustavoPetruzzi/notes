@@ -7,6 +7,8 @@ import { ButtonType } from "../../models/button-type";
 import { getColor } from "../../utils/utils";
 import { LoginFormData } from "../../models/login-form-data";
 import Input from "../../ui/Input/Input";
+import Button from "../../ui/Button/Button";
+
 interface Props {
   isLoading: boolean;
   onSave(formData: LoginFormData): void;
@@ -56,9 +58,7 @@ export const Login = (props: Props) => {
         {errors?.password?.type === "required" && (
           <p className="help is-danger"> This is required</p>
         )}
-        <button type="submit" className={`button ${buttonType} ${loadingIcon}`}>
-          Login
-        </button>
+        <Button type="submit">Login</Button>
       </form>
       <Link to="/auth/signup">
         Don't have an account? <strong>Signup</strong>
