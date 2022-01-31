@@ -7,6 +7,13 @@
     justify-content: center;
     width: 100%;
   }
+
+  form {
+    button {
+      margin: auto;
+      margin-top: 1rem;
+    }
+  }
 }
 .container a:last-child {
   display: block;
