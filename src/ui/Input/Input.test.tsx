@@ -6,5 +6,9 @@ describe("Input component", () => {
     render(
       <Input type="text" label="testLabel" id="test" register={() => {}} />
     );
+    const inputElement = screen.getByLabelText("testLabel");
+    const labelElement = screen.getByText(/testLabel/);
+    expect(inputElement.id).toEqual("test");
+    expect(labelElement).toBeInTheDocument();
   });
 });
