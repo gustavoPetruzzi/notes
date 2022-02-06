@@ -7,6 +7,8 @@ import useKeypress from "../../hooks/useKeypress";
 import { getUsers } from "../../utils/user";
 import { NoteFormData, FullNote, Note } from "../../models/note";
 import { ListedUser } from "../../models/user";
+import Button from "../../ui/Button/Button";
+
 export const Notes = (props: { token: string; userId: string }) => {
   const [notes, setNotes] = useState<FullNote[]>([]);
   const [users, setUsers] = useState<ListedUser[]>([]);
@@ -58,9 +60,9 @@ export const Notes = (props: { token: string; userId: string }) => {
       ) : (
         <h2> It seems that you don't have any notes :/</h2>
       )}
-      <button className="button is-primary" onClick={newNoteModal}>
+      <Button type="button" color="primary" onClick={newNoteModal}>
         Add note
-      </button>
+      </Button>
       <Modal show={showModal} title="New note" onClose={closeModal}>
         <NoteForm onSave={onSaveHandler} isLoading={isLoading} users={users} />
       </Modal>
