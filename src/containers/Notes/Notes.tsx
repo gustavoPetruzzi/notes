@@ -8,6 +8,7 @@ import { getUsers } from "../../utils/user";
 import { NoteFormData, FullNote, Note } from "../../models/note";
 import { ListedUser } from "../../models/user";
 import Button from "../../ui/Button/Button";
+import NoteComponent from "../../components/Note/Note";
 
 export const Notes = (props: { token: string; userId: string }) => {
   const [notes, setNotes] = useState<FullNote[]>([]);
@@ -52,15 +53,26 @@ export const Notes = (props: { token: string; userId: string }) => {
     });
   };
 
+  let content = <h1> Loading... </h1>;
+
+  if (!isLoading && notes.length > 0) {
+    content = (
+      <>
+        {notes.map((note) => (
+          <NoteComponent key={note.id} title={note.title}>
+            <p> {note.content} </p>
+          </NoteComponent>
+        ))}
+      </>
+    );
+  } else {
+    content = <h2> It seems that you don't have any note :/ </h2>;
+  }
+
   return (
     <div className={styles.container}>
-      {isLoading ? <h1>Loading...</h1> : null}
-      {!isLoading && notes.length > 0 ? (
-        <h1>NOTES</h1>
-      ) : (
-        <h2> It seems that you don't have any notes :/</h2>
-      )}
-      <Button type="button" color="primary" onClick={newNoteModal}>
+      {content}
+      <Button type="button" color="default" onClick={newNoteModal}>
         Add note
       </Button>
       <Modal show={showModal} title="New note" onClose={closeModal}>
