@@ -19,4 +19,9 @@
   button {
     margin-top: 1rem;
   }
+
+  .textarea-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
 }

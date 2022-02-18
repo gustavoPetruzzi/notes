@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import { ButtonType } from "../../models/button-type";
 import { NoteFormData } from "../../models/note";
 import { ListedUser } from "../../models/user";
+import Input from "../../ui/Input/Input";
 import { getColor } from "../../utils/utils";
 import styles from "./NotesForm.module.scss";
+
 interface Props {
   onSave(formData: NoteFormData): void;
   isLoading: boolean;
@@ -28,39 +30,35 @@ export const NoteForm = (props: Props) => {
     <div className={styles.container}>
       <h1> Add Note </h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="title" className="label">
-          Title
-        </label>
-        <input
-          name="title"
-          id="title"
-          className="input"
+        <Input
           type="text"
-          placeholder="Title"
-          ref={register({
+          id="title"
+          label="Title"
+          register={register({
             required: true,
           })}
         />
         {errors?.title && (
           <p className="help is-danger"> The title is required</p>
         )}
-        <label htmlFor="content" className="label">
-          Content
-        </label>
-        <textarea
-          id="content"
-          name="content"
-          className="textarea"
-          rows={4}
-          cols={4}
-          placeholder="Content"
-          ref={register({
-            required: true,
-          })}
-        />
-        {errors?.content && (
-          <p className="help is-danger"> The content is required</p>
-        )}
+        <div className={styles["textarea-wrapper"]}>
+          <label htmlFor="content" className="label">
+            Content
+          </label>
+          <textarea
+            id="content"
+            name="content"
+            rows={4}
+            cols={4}
+            placeholder="Content"
+            ref={register({
+              required: true,
+            })}
+          />
+          {errors?.content && (
+            <p className="help is-danger"> The content is required</p>
+          )}
+        </div>
         <label htmlFor="receiver" className="label">
           Receiver
         </label>
