@@ -21,8 +21,7 @@ export const Login = (props: Props) => {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormData>({ mode: "onChange" });
-  const buttonType = getColor(ButtonType.Default);
-  const loadingIcon = isLoading ? "is-loading" : "";
+
   const onSubmit = (data: LoginFormData) => onSave(data);
   return (
     <div className={styles.container}>
