@@ -1,0 +1,23 @@
+.textarea-wrapper {
+  padding-top: 25px;
+  position: relative;
+  width: 100%;
+}
+
+.form-control {
+  border-radius: 1rem;
+  padding: 0.4rem;
+  width: 100%;
+}
+
+.control-label {
+  left: 1.5rem;
+  position: absolute;
+  top: 32px;
+}
+
+.form-control:focus + .control-label,
+textarea:not(:placeholder-shown) + .control-label {
+  left: 0.5rem;
+  top: 5px;
+}
