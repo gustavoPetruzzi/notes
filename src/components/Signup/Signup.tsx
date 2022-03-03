@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import styles from './Signup.module.scss';
 import { Bookmark } from '../Bookmark/Bookmark';
 import { BookmarkSize } from '../Bookmark/bookmark-size';
-import { ButtonType } from '../../models/button-type';
 import { useForm } from 'react-hook-form';
-import { getColor } from '../../utils/utils';
+import Button from "../../ui/Button/Button";
+import Spinner from "../../ui/Spinner/Spinner";
 interface Props {
   isLoading: boolean
   onSave(user: User): void
@@ -14,8 +14,7 @@ interface Props {
 export const Signup = (props: Props) => {
   const { isLoading, onSave } = props;
   const { register, handleSubmit, formState: { errors }} = useForm({ mode: "onChange"});
-  const buttonType = getColor(ButtonType.Default);
-  const loadingIcon = isLoading ? 'is-loading' : '';
+
   const onSubmit = (data: User) => onSave(data);
   return (
     <div className={styles.container}>
@@ -77,9 +76,7 @@ export const Signup = (props: Props) => {
             <p className="help is-danger"> This is required</p>
           }
         </div>
-        <button className={`button ${buttonType} ${loadingIcon}`}>
-          Signup
-        </button>
+        {!isLoading ? <Button type="submit">Signup </Button> : <Spinner /> }
       </form>
       <Link to="/auth/login">
         Have an account? <strong> Login </strong>

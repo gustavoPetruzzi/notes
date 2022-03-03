@@ -3,11 +3,10 @@ import styles from "./Login.module.scss";
 import { useForm } from "react-hook-form";
 import { Bookmark } from "../Bookmark/Bookmark";
 import { BookmarkSize } from "../Bookmark/bookmark-size";
-import { ButtonType } from "../../models/button-type";
-import { getColor } from "../../utils/utils";
 import { LoginFormData } from "../../models/login-form-data";
 import Input from "../../ui/Input/Input";
 import Button from "../../ui/Button/Button";
+import Spinner from "../../ui/Spinner/Spinner";
 
 interface Props {
   isLoading: boolean;
@@ -57,7 +56,7 @@ export const Login = (props: Props) => {
         {errors?.password?.type === "required" && (
           <p className="help is-danger"> This is required</p>
         )}
-        <Button type="submit">Login</Button>
+        {!isLoading ? <Button type="submit">Login</Button> : <Spinner /> }
       </form>
       <Link to="/auth/signup">
         Don't have an account? <strong>Signup</strong>
