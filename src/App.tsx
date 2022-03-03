@@ -22,10 +22,6 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userId = localStorage.getItem("userId");
-    console.log("holaaaaa");
-    console.log(token);
-    console.log(userId);
-    console.log("hola?");
     if (token && userId) {
       setToken(token);
       setUserId(userId);

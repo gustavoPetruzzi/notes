@@ -3,6 +3,7 @@ import { ButtonType } from "../../models/button-type";
 import { NoteFormData } from "../../models/note";
 import { ListedUser } from "../../models/user";
 import Input from "../../ui/Input/Input";
+import Textarea from "../../ui/Textarea/Textarea";
 import { getColor } from "../../utils/utils";
 import styles from "./NotesForm.module.scss";
 
@@ -42,16 +43,12 @@ export const NoteForm = (props: Props) => {
           <p className="help is-danger"> The title is required</p>
         )}
         <div className={styles["textarea-wrapper"]}>
-          <label htmlFor="content" className="label">
-            Content
-          </label>
-          <textarea
+          <Textarea
             id="content"
-            name="content"
             rows={4}
             cols={4}
-            placeholder="Content"
-            ref={register({
+            label="Content"
+            register={register({
               required: true,
             })}
           />
