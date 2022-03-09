@@ -5,7 +5,8 @@ import { Switch, Route, useHistory, Redirect } from "react-router-dom";
 import { Auth } from "./containers/Auth/Auth";
 import { Notes } from "./containers/Notes/Notes";
 import { Navbar } from "./components/Navbar/Navbar";
-import Input from "./ui/Input/Input";
+import Settings from "./containers/Settings/Settings";
+
 function App() {
   let history = useHistory();
 
@@ -28,12 +29,20 @@ function App() {
     }
   }, [token, userId]);
 
+  const handleSettingsClick = () => {
+    history.push("/settings");
+  };
   return (
     <div className="app">
-      {token.length > 0 && <Navbar></Navbar>}
+      {token.length > 0 && (
+        <Navbar onSettingsClicked={handleSettingsClick}></Navbar>
+      )}
       <Switch>
         <Route path="/auth/:type">
           <Auth handleLogin={storeUserInfo} />
+        </Route>
+        <Route path="/settings">
+          <Settings />
         </Route>
         <Route
           path="/"
