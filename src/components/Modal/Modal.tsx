@@ -1,4 +1,5 @@
 import { memo } from 'react';
+import CloseButton from '../../ui/CloseButton/CloseButton';
 import styles from './Modal.module.scss';
 
 interface Props {
@@ -16,7 +17,7 @@ const ModalComponent = (props: Props) => {
       <div className={styles.modal__content}>
         <div className={styles.modal__header}>
           <span> { title }</span>
-          <button className="delete" onClick={onClose}></button>
+          <CloseButton onClick={onClose} />
         </div>
         { children }
       </div>
