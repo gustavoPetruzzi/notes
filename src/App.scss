@@ -1,6 +1,14 @@
+@use './styles/variables' as *;
 .app {
-  text-align: center;
   background-color: cadetblue;
   height: 100vh;
+  position: relative;
+  text-align: center;
+
+  .settings-modal {
+    position: absolute;
+    right: 0;
+    top: $navbar-height;
+  }
 }
 

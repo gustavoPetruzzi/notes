@@ -1,8 +1,8 @@
 
 @mixin bookmarkBorder($leftSize, $rightSize, $bottomSize, $color) {
+  border-bottom: $bottomSize solid transparent; 
   border-left: $leftSize solid $color; 
   border-right: $rightSize solid $color; 
-  border-bottom: $bottomSize solid transparent; 
 }
 
 *, *:before, *:after{ 
@@ -13,9 +13,8 @@
 
 .bookmark { 
   position: relative; 
-  -webkit-transform: rotate(0deg) skew(0deg); 
   transform: rotate(0deg) skew(0deg); 
-
+  -webkit-transform: rotate(0deg) skew(0deg); 
 
   &__small {
     height: 20px;
