@@ -1,0 +1,10 @@
+@use '../../styles/variables' as *;
+
+.settings {
+  background-color: white;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.7);
+  padding: 0.5rem;
+  position: absolute;
+  right: 1rem;
+  top: $navbar-height;
+}

@@ -1,0 +1,13 @@
+.settingsItem {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 1rem;
+  justify-content: start;
+  margin: 1rem 0;
+  width: 10rem;
+  span {
+    line-height: 1px;
+  }
+
+}
