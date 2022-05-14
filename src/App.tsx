@@ -12,7 +12,7 @@ function App() {
 
   const [token, setToken] = useState("");
   const [userId, setUserId] = useState("");
-
+  const [showSettingsModal, setShowSettingsModal] = useState<Boolean>(false);
   const storeUserInfo = (loginResponse: LoginResponse) => {
     const { token, userId } = loginResponse;
     setToken(token);
@@ -30,19 +30,19 @@ function App() {
   }, [token, userId]);
 
   const handleSettingsClick = () => {
-    history.push("/settings");
+    setShowSettingsModal((previous => !previous));
   };
   return (
     <div className="app">
+      {token.length > 0 && showSettingsModal && (
+        <Settings />
+      )}
       {token.length > 0 && (
         <Navbar onSettingsClicked={handleSettingsClick}></Navbar>
       )}
       <Switch>
         <Route path="/auth/:type">
           <Auth handleLogin={storeUserInfo} />
-        </Route>
-        <Route path="/settings">
-          <Settings />
         </Route>
         <Route
           path="/"
